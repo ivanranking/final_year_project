@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaSentinel | Dashboard</title>
+    <title>AquaSentinel | Devices</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -223,68 +224,57 @@
 
     <div class="container">
         
-        <div class="stats-grid">
+            <div class="stats-grid">
             <div class="stat-card blue-card">
                 <h3>Total Devices</h3>
-                <div class="value">12</div>
+                <div class="value">{{ total_devices }}</div>
             </div>
             <div class="stat-card green-card">
                 <h3>Active Devices</h3>
-                <div class="value">9</div>
+                <div class="value">{{ active_devices }}</div>
             </div>
             <div class="stat-card red-card">
-                <h3>Current Flow</h3>
-                <div class="value">2.3 <span class="unit">L/min</span></div>
+                <h3>Inactive Devices</h3>
+                <div class="value">{{ inactive_devices }}</div>
             </div>
             <div class="stat-card dark-card">
-                <h3>Leak Status</h3>
-                <div class="leak-status">Leak Detected</div>
-            </div>
-        </div>
-
-        <div class="alert-banner">
-            <i class="fas fa-exclamation-triangle"></i>
-            <div>
-                <span class="alert-text">Leak Detected!</span>
-                <span class="alert-details">Kitchen Pipeline — Time: 14:32:10</span>
+                <h3>Last Updated</h3>
+                <div class="leak-status">{% if devices %}{{ devices.0.updated_at|date:'Y-m-d H:i' }}{% else %}N/A{% endif %}</div>
             </div>
         </div>
 
         <div class="chart-container">
             <div class="chart-header">
-                <i class="fas fa-chart-line" style="color: var(--primary-blue)"></i>
-                <h2>Real-Time Water Flow</h2>
+                <i class="fas fa-microchip" style="color: var(--primary-blue)"></i>
+                <h2>Device List</h2>
             </div>
-            
-            <div class="visual-graph">
-                <div class="grid-lines">
-                    <div class="grid-line"></div>
-                    <div class="grid-line"></div>
-                    <div class="grid-line"></div>
-                    <div class="grid-line"></div>
-                    <div class="grid-line"></div>
-                </div>
-                
-                <svg class="graph-line" viewBox="0 0 1000 300" preserveAspectRatio="none">
-                    <defs>
-                        <linearGradient id="areaGradient" x1="0" x2="0" y1="0" y2="1">
-                            <stop offset="0%" stop-color="#4299e1" stop-opacity="0.4"/>
-                            <stop offset="100%" stop-color="#4299e1" stop-opacity="0"/>
-                        </linearGradient>
-                    </defs>
-                    <path d="M0,250 Q100,200 150,150 T300,220 T450,100 T600,180 T750,80 T900,200 L1000,150 L1000,300 L0,300 Z" fill="url(#areaGradient)" />
-                    <path d="M0,250 Q100,200 150,150 T300,220 T450,100 T600,180 T750,80 T900,200 L1000,150" fill="none" stroke="#3182ce" stroke-width="3" />
-                </svg>
-            </div>
-            
-            <div class="time-labels">
-                <span>1:00</span>
-                <span>4:00</span>
-                <span>7:00</span>
-                <span>10:00</span>
-                <span>13:00</span>
-                <span>16:00</span>
-            </div>
+
+            {% if devices %}
+            <table style="width:100%; border-collapse: collapse;">
+                <thead>
+                    <tr style="text-align:left; border-bottom: 1px solid #edf2f7;">
+                        <th style="padding: 12px;">Name</th>
+                        <th style="padding: 12px;">Serial</th>
+                        <th style="padding: 12px;">Location</th>
+                        <th style="padding: 12px;">Last Seen</th>
+                        <th style="padding: 12px;">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for device in devices %}
+                    <tr style="border-bottom: 1px solid #edf2f7;">
+                        <td style="padding: 12px;">{{ device.name }}</td>
+                        <td style="padding: 12px;">{{ device.serial_number }}</td>
+                        <td style="padding: 12px;">{{ device.location|default:'–' }}</td>
+                        <td style="padding: 12px;">{{ device.last_seen|date:'Y-m-d H:i'|default:'–' }}</td>
+                        <td style="padding: 12px;">{% if device.is_active %}Active{% else %}Inactive{% endif %}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <p style="margin: 0;">No devices have been added yet.</p>
+            {% endif %}
         </div>
 
     </div>

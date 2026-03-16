@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -182,10 +183,14 @@
             <i class="fas fa-eye"></i> AquaSentinel
         </div>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#">Devices</a></li>
-            <li><a href="sms.html">Notifications <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a></li>
-            <li><a href="login.html">Login</a></li>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'devices' %}">Devices</a></li>
+            <li><a href="{% url 'sms' %}">Notifications <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a></li>
+            {% if request.user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
         </ul>
     </nav>
 
@@ -193,31 +198,31 @@
         <h1>Register</h1>
 
         <div class="register-card">
-            <form action="#">
+            <form method="post" autocomplete="off">
+                {% csrf_token %}
+
+                {% if messages %}
+                <div style="margin-bottom: 16px;">
+                    {% for message in messages %}
+                        <div style="color: {% if message.tags == 'error' %}#e53e3e{% else %}#2f855a{% endif %}; font-weight: 600; margin-bottom: 6px;">{{ message }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="fullname">Full Name</label>
-                        <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+                        <label for="id_username">Username</label>
+                        {{ form.username }}
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="email@example.com" required>
+                        <label for="id_password1">Password</label>
+                        {{ form.password1 }}
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="confirm-password">Confirm Password</label>
-                        <input type="password" id="confirm-password" name="confirm-password" required>
+                        <label for="id_password2">Confirm Password</label>
+                        {{ form.password2 }}
                     </div>
                 </div>
 
@@ -227,7 +232,7 @@
             </form>
         </div>
 
-        <p class="login-link">Already have an account? <a href="login.html">Login here</a></p>
+        <p class="login-link">Already have an account? <a href="{% url 'login' %}">Login here</a></p>
     </div>
 
 </body>

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -109,6 +110,7 @@
             color: #4a5568;
         }
 
+        input[type="text"],
         input[type="email"], 
         input[type="password"] {
             width: 100%;
@@ -175,10 +177,14 @@
             <i class="fas fa-eye"></i> AquaSentinel
         </div>
         <ul class="nav-links">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="sms.html">Notifications <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a></li>
-            <li><a href="index.html">Logout</a></li>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'dashboard' %}">Services</a></li>
+            <li><a href="{% url 'sms' %}">Notifications <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a></li>
+            {% if request.user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
         </ul>
     </nav>
 
@@ -186,16 +192,26 @@
         <h1>Login</h1>
 
         <div class="login-card">
-            <form>
+            <form method="post" autocomplete="off">
+                {% csrf_token %}
+
+                {% if messages %}
+                <div style="margin-bottom: 16px;">
+                    {% for message in messages %}
+                        <div style="color: {% if message.tags == 'error' %}#e53e3e{% else %}#2f855a{% endif %}; font-weight: 600; margin-bottom: 6px;">{{ message }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
+                        <label for="id_username">Username</label>
+                        {{ form.username }}
                     </div>
 
                     <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
+                        <label for="id_password">Password</label>
+                        {{ form.password }}
                     </div>
                 </div>
 
@@ -206,7 +222,7 @@
         </div>
 
         <div class="forgot-password">
-            <a href="#">Forgot Password?</a>
+            <a href="{% url 'password_reset' %}">Forgot Password?</a>
         </div>
     </div>
 
