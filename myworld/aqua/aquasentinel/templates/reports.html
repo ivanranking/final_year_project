@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaSentinel | Leak Reports</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #2c68c9;
+            --dark-blue: #1a4a94;
+            --bg-light: #f0f4f8;
+            --resolved: #38b2ac;
+            --pending: #4a5568;
+            --warning: #ed8936;
+            --high-severity: #e53e3e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: #334e68;
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 12px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        .user-profile img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .container {
+            padding: 40px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #2d3748;
+        }
+
+        .actions-bar {
+            margin-bottom: 20px;
+        }
+
+        .btn-add {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* --- TABLE STYLING --- */
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        thead {
+            background-color: #f8fafc;
+            border-bottom: 2px solid #edf2f7;
+        }
+
+        th {
+            padding: 18px 25px;
+            font-weight: 700;
+            color: #4a5568;
+            text-transform: capitalize;
+        }
+
+        td {
+            padding: 18px 25px;
+            border-bottom: 1px solid #edf2f7;
+            font-size: 0.95rem;
+            color: #2d3748;
+        }
+
+        tr:last-child td { border-bottom: none; }
+
+        /* Severity Colors */
+        .sev-high { color: var(--high-severity); font-weight: bold; }
+        .sev-medium { color: var(--warning); font-weight: bold; }
+
+        /* Status Badges */
+        .status-badge {
+            padding: 6px 15px;
+            border-radius: 6px;
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .status-resolved { background-color: var(--resolved); }
+        .status-fixing { background-color: var(--warning); }
+        .status-pending { background-color: var(--pending); }
+
+        @media (max-width: 768px) {
+            .table-container { overflow-x: auto; }
+            th, td { padding: 12px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <i class="fas fa-eye"></i> AquaSentinel
+        </div>
+        <div class="nav-icons">
+            <i class="fas fa-bell"></i>
+            <i class="fas fa-envelope"></i>
+            <i class="fas fa-comment-dots"></i>
+            <div class="user-profile">
+                <img src="https://i.pravatar.cc/150?u=aqua" alt="User">
+                <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Leak Reports</h1>
+
+        <div class="actions-bar">
+            <button class="btn-add">
+                <i class="fas fa-play"></i> Add Report
+            </button>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Location</th>
+                        <th>Flow Rate</th>
+                        <th>Severity</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>24/02/2026</td>
+                        <td>Kitchen</td>
+                        <td>15 L/min</td>
+                        <td class="sev-high">High</td>
+                        <td><span class="status-badge status-resolved">Resolved</span></td>
+                    </tr>
+                    <tr>
+                        <td>24/02/2026</td>
+                        <td>Bathroom</td>
+                        <td>7 L/min</td>
+                        <td class="sev-medium">Medium</td>
+                        <td><span class="status-badge status-fixing">Fixing</span></td>
+                    </tr>
+                    <tr>
+                        <td>23/02/2026</td>
+                        <td>Bathroom</td>
+                        <td>7 L/min</td>
+                        <td class="sev-medium">Medium</td>
+                        <td><span class="status-badge status-pending">Pending</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>

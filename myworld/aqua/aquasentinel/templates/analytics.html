@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaSentinel | Leakage Analytics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #1e60ad;
+            --nav-blue: #0d47a1;
+            --bg-light: #f1f6fb;
+            --text-dark: #2c3e50;
+            --border-color: #e2e8f0;
+            --note-bg: #e7f3ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background-color: var(--nav-blue);
+            color: white;
+            padding: 12px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+        }
+
+        .user-profile img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .container {
+            padding: 40px 5%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .page-title::before, .page-title::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 35%;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+        .page-title::before { left: 0; }
+        .page-title::after { right: 0; }
+
+        /* --- ANALYTICS GRID --- */
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .chart-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .chart-card h3 {
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            color: #4a5568;
+        }
+
+        .chart-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #f8fafc;
+            border: 1px dashed #cbd5e0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        /* Simplified CSS Bars to mimic chart appearance */
+        .bar { width: 20px; border-radius: 3px 3px 0 0; }
+        .bar-blue { background: #4299e1; height: 60%; }
+        .bar-red { background: #f56565; height: 85%; }
+        .bar-yellow { background: #ecc94b; height: 40%; }
+        .bar-teal { background: #4fd1c5; height: 70%; }
+
+        /* --- NOTES SECTION --- */
+        .notes-box {
+            background-color: var(--note-bg);
+            border: 1px solid #d1e9ff;
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 20px;
+        }
+
+        .notes-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .notes-title::after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background-color: #bedbff;
+            margin-left: 15px;
+        }
+
+        .notes-content {
+            font-size: 1rem;
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .page-title::before, .page-title::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <i class="fas fa-eye"></i> AquaSentinel
+        </div>
+        <div class="nav-icons">
+            <i class="fas fa-bell"></i>
+            <i class="fas fa-envelope"></i>
+            <i class="fas fa-comment-dots"></i>
+            <div class="user-profile">
+                <img src="https://i.pravatar.cc/150?u=tech" alt="User">
+                <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="page-title">Leakage Analytics</h1>
+
+        <div class="analytics-grid">
+            <div class="chart-card">
+                <h3><i class="fas fa-droplet" style="color: #4299e1;"></i> Daily Water Usage</h3>
+                <div class="chart-placeholder">
+                    <div class="bar bar-blue" style="height: 40%"></div>
+                    <div class="bar bar-teal" style="height: 60%"></div>
+                    <div class="bar bar-blue" style="height: 80%"></div>
+                    <div class="bar bar-teal" style="height: 50%"></div>
+                    <div class="bar bar-blue" style="height: 70%"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h3><i class="fas fa-chart-area" style="color: #1e60ad;"></i> Weekly Leak Frequency</h3>
+                <div class="chart-placeholder">
+                    <div class="bar bar-blue" style="height: 30%"></div>
+                    <div class="bar bar-red" style="height: 90%"></div>
+                    <div class="bar bar-blue" style="height: 50%"></div>
+                    <div class="bar bar-yellow" style="height: 25%"></div>
+                    <div class="bar bar-red" style="height: 15%"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h3><i class="fas fa-check-double" style="color: #38b2ac;"></i> Pressure vs Flow Rate</h3>
+                <div class="chart-placeholder">
+                    <i class="fas fa-wave-square" style="font-size: 4rem; color: #e2e8f0; align-self: center;"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="notes-box">
+            <div class="notes-title">
+                <i class="fas fa-fingerprint"></i> Notes
+            </div>
+            <div class="notes-content">
+                <strong>Pattern Insight:</strong> Pattern detected between 2AM - 4AM. Possible loose joint in bathroom pipeline.
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
