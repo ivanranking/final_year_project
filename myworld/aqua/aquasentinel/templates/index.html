@@ -24,9 +24,17 @@
         .hero {
             background: linear-gradient(180deg, var(--brand-blue) 0%, var(--light-blue) 100%);
             color: white;
-            padding: 40px 8% 150px;
+            padding: 60px 8% 120px;
             position: relative;
             overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1560457079-29a13059c0bb?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;
+            opacity: 0.12;
+            z-index: 0;
         }
 
         /* Abstract Background Waves */
@@ -45,9 +53,24 @@
         .nav-links { display: flex; list-style: none; gap: 25px; }
         .nav-links a { color: white; text-decoration: none; font-weight: 500; opacity: 0.9; }
 
-        .hero-content { text-align: center; margin-top: 60px; position: relative; z-index: 1; }
-        .hero-content h1 { font-size: 3.5rem; margin-bottom: 15px; }
-        .hero-content p { font-size: 1.2rem; margin-bottom: 35px; font-weight: 300; }
+        .hero-content { text-align: left; max-width: 540px; position: relative; z-index: 1; }
+        .hero-content h1 { font-size: 3.5rem; margin-bottom: 15px; line-height: 1.1; }
+        .hero-content p { font-size: 1.1rem; margin-bottom: 35px; font-weight: 300; line-height: 1.6; }
+
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-top: 50px; position: relative; z-index: 1; }
+        .hero-visual { display: flex; justify-content: center; }
+        .hero-visual img { border-radius: 22px; box-shadow: 0 30px 50px rgba(0,0,0,0.15); max-width: 100%; height: auto; }
+
+        .trusted { margin-top: 30px; color: rgba(255,255,255,0.85); font-size: 0.9rem; display: flex; flex-direction: column; gap: 10px; }
+        .trusted span { opacity: 0.9; }
+        .trusted .logos { display: flex; gap: 15px; align-items: center; }
+        .trusted .logos img { width: 110px; height: auto; opacity: 0.85; filter: brightness(1.1); }
+
+        @media (max-width: 960px) {
+            .hero-grid { grid-template-columns: 1fr; gap: 35px; }
+            .hero-content { text-align: center; }
+            .trusted { align-items: center; }
+        }
 
         /* Buttons matching the image style */
         .btn-container { display: flex; justify-content: center; gap: 20px; }
@@ -88,49 +111,11 @@
 </head>
 <body>
 
-    <section class="hero">
-        <nav>
-            <div class="logo"><i class="fas fa-eye"></i> AquaSentinel</div>
-            <ul class="nav-links">
-                <li><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="{% url 'dashboard' %}">Services</a></li>
-                <li><a href="{% url 'sms' %}">Notifications</a></li>
-                {% if request.user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                {% else %}
-                    <li><a href="{% url 'login' %}">Login</a></li>
-                {% endif %}
-            </ul>
-        </nav>
+    {% include 'partials/hero.html' %}
 
-        <div class="hero-content">
-            <h1>AquaSentinel</h1>
-            <p>Smart, Affordable, Dual-Path Water Leakage Detection System</p>
-            <div class="btn-container">
-                <a href="{% url 'login' %}" class="btn btn-white">Login</a>
-                <a href="{% url 'register' %}" class="btn btn-white">Register</a>
-                <a href="{% url 'dashboard' %}" class="btn btn-green">View Live Demo</a>
-            </div>
-        </div>
-    </section>
+    {% include 'partials/features.html' %}
 
-    <div class="features-container">
-        <div class="feature-box"><div class="feature-icon"><i class="fas fa-satellite-dish"></i></div><p>Real-Time<br>Monitoring</p></div>
-        <div class="feature-box"><div class="feature-icon"><i class="fas fa-comment-dots"></i></div><p>SMS<br>Alerts</p></div>
-        <div class="feature-box"><div class="feature-icon"><i class="fas fa-folder-open"></i></div><p>Web<br>Notifications</p></div>
-        <div class="feature-box"><div class="feature-icon"><i class="fas fa-chart-line"></i></div><p>Leak Pattern<br>Analysis</p></div>
-        <div class="feature-box"><div class="feature-icon"><i class="fas fa-microchip"></i></div><p>IoT Device<br>Integration</p></div>
-    </div>
-
-    <section class="how-it-works">
-        <h2>How It Works</h2>
-        <div class="steps">
-            <div class="step"><div class="step-circle"><i class="fas fa-tint"></i></div><p>1. Sensors Detect Leak</p></div>
-            <div class="step"><div class="step-circle"><i class="fas fa-cloud"></i></div><p>2. Data Sent to Cloud</p></div>
-            <div class="step"><div class="step-circle"><i class="fas fa-smile"></i></div><p>3. Pattern Analysis</p></div>
-            <div class="step"><div class="step-circle"><i class="fas fa-mobile-alt"></i></div><p>4. Alerts Sent to You</p></div>
-        </div>
-    </section>
+    {% include 'partials/how_it_works.html' %}
 
 </body>
 </html>

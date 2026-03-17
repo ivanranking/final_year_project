@@ -120,5 +120,21 @@ def sms_logs(request):
 
 
 @login_required(login_url='login')
+def settings(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully.')
+            return redirect('settings')
+        else:
+            messages.error(request, 'Please fix the errors below.')
+    else:
+        form = ProfileForm(instance=request.user)
+
+    return render(request, 'settings.html', {'form': form})
+
+
+@login_required(login_url='login')
 def admin_dashboard(request):
     return render(request, 'admin.html')

@@ -1,0 +1,45 @@
+<section class="hero">
+    <nav>
+        <a href="{% url 'index' %}" class="logo">
+            <i class="fas fa-eye"></i> AquaSentinel
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'dashboard' %}">Services</a></li>
+            <li><a href="{% url 'sms' %}">Notifications</a></li>
+            {% if request.user.is_authenticated %}
+                <li><a href="{% url 'settings' %}">Settings</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <div class="hero-grid">
+        <div class="hero-content">
+            <h1>AquaSentinel</h1>
+            <p>Smart, affordable leak detection — get real-time alerts, monitor devices, and stop water loss before it becomes expensive.</p>
+
+            <div class="btn-container">
+                <a href="{% url 'login' %}" class="btn btn-white">Login</a>
+                <a href="{% url 'register' %}" class="btn btn-white">Register</a>
+                <a href="{% url 'dashboard' %}" class="btn btn-green">View dashboard</a>
+            </div>
+
+            <div class="trusted">
+                <span>Trusted by:</span>
+                <div class="logos">
+                    <img src="https://via.placeholder.com/120x40?text=City+Water" alt="City Water" />
+                    <img src="https://via.placeholder.com/120x40?text=Green+Estate" alt="Green Estate" />
+                    <img src="https://via.placeholder.com/120x40?text=Flow+Tech" alt="Flow Tech" />
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <img src="https://images.unsplash.com/photo-1581091012184-17445dd12cca?auto=format&fit=crop&w=1200&q=80" alt="AquaSentinel dashboard screenshot" />
+        </div>
+    </div>
+</section>
