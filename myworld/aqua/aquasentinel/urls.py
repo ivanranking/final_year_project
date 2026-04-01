@@ -16,6 +16,11 @@ urlpatterns = [
     path('sms/', views.sms_logs, name='sms'),
     path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
 
+    # Legal pages
+    path('privacy-policy/', views.privacy_policy, name='privacy_policy'),
+    path('terms-of-use/', views.terms_of_use, name='terms_of_use'),
+    path('cookie-policy/', views.cookie_policy, name='cookie_policy'),
+
     # Password reset
     path('password-reset/', auth_views.PasswordResetView.as_view(template_name='registration/password_reset_form.html'), name='password_reset'),
     path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(template_name='registration/password_reset_done.html'), name='password_reset_done'),

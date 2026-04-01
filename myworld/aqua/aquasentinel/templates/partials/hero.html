@@ -1,4 +1,4 @@
-<section class="hero">
+<section class="hero" id="hero">
     <nav>
         <a href="{% url 'index' %}" class="logo">
             <i class="fas fa-eye"></i> AquaSentinel
@@ -20,7 +20,7 @@
     <div class="hero-grid">
         <div class="hero-content">
             <h1>AquaSentinel</h1>
-            <p>Smart, affordable leak detection — get real-time alerts, monitor devices, and stop water loss before it becomes expensive.</p>
+            <p>Smart, affordable leak detection get real time alerts, monitor devices, and stop water loss before it becomes expensive.</p>
 
             <div class="btn-container">
                 <a href="{% url 'login' %}" class="btn btn-white">Login</a>
@@ -31,15 +31,13 @@
             <div class="trusted">
                 <span>Trusted by:</span>
                 <div class="logos">
-                    <img src="https://via.placeholder.com/120x40?text=City+Water" alt="City Water" />
-                    <img src="https://via.placeholder.com/120x40?text=Green+Estate" alt="Green Estate" />
-                    <img src="https://via.placeholder.com/120x40?text=Flow+Tech" alt="Flow Tech" />
+                    <img src="{% static 'aquasentinel/team/makerere-university.png' %}" alt="Makerere University" />
                 </div>
             </div>
         </div>
 
         <div class="hero-visual">
-            <img src="https://images.unsplash.com/photo-1581091012184-17445dd12cca?auto=format&fit=crop&w=1200&q=80" alt="AquaSentinel dashboard screenshot" />
+            <img src="{% static 'aquasentinel/team/dashboard-screenshot.png' %}" alt="AquaSentinel dashboard screenshot" />
         </div>
     </div>
 </section>

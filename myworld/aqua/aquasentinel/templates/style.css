@@ -112,3 +112,57 @@ input {
     padding: 10px;
     margin: 10px 0;
 }
+
+/* Profile Picture Styling */
+.member-avatar {
+    width: 120px;
+    height: 120px;
+    max-width: 120px;
+    max-height: 120px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+    border: 3px solid #1ABC9C;
+}
+
+.member-avatar .profile-img,
+.member-avatar img {
+    width: 120px !important;
+    height: 120px !important;
+    max-width: 120px !important;
+    max-height: 120px !important;
+    object-fit: cover !important;
+    display: block;
+}
+
+.member-avatar i.fas.fa-user-circle {
+    font-size: 80px;
+    color: #ccc;
+}
+
+/* Profile Upload Form */
+.profile-upload-section {
+    margin: 30px 0;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.profile-picture-preview {
+    max-width: 200px;
+    max-height: 200px;
+    margin: 15px 0;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    padding: 10px;
+}
+
+.profile-picture-preview img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+}

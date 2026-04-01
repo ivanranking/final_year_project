@@ -6,6 +6,19 @@ from django.utils import timezone
 User = get_user_model()
 
 
+class UserProfile(models.Model):
+    """Extended user profile with additional fields like profile picture."""
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    bio = models.TextField(blank=True, null=True)
+    role = models.CharField(max_length=50, blank=True)
+    profile_picture = models.ImageField(upload_to='profile_pictures/', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.user.username}'s profile"
+
+
 class Device(models.Model):
     """A physical device that reports water flow / leak data."""
 

@@ -1,6 +1,18 @@
 from django.contrib import admin
 
-from .models import Device, LeakEvent, SmsLog
+from .models import Device, LeakEvent, SmsLog, UserProfile
+
+
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ("user", "role", "updated_at")
+    search_fields = ("user__username", "user__email", "role")
+    readonly_fields = ("created_at", "updated_at")
+    fieldsets = (
+        ("User Information", {'fields': ('user',)}),
+        ("Profile Details", {'fields': ('role', 'bio', 'profile_picture')}),
+        ("Timestamps", {'fields': ('created_at', 'updated_at')}),
+    )
 
 
 @admin.register(Device)

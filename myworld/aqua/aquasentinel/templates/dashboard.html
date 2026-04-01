@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-blue: #2c68c9;
-            --dark-blue: #1a4a94;
+            --primary-blue: #1b68c9;
+            --dark-blue: #1b68c9;
             --danger-red: #e53e3e;
-            --success-green: #38b2ac;
+            --success-green: #25b4a6;
             --bg-light: #f0f4f8;
             --card-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
@@ -45,12 +45,31 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo:hover {
+            opacity: 0.9;
         }
 
         .nav-icons {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 25px;
+        }
+
+        .nav-icons a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+
+        .nav-icons a:hover {
+            opacity: 1;
         }
 
         .nav-icons i {
@@ -136,8 +155,8 @@
             box-shadow: var(--card-shadow);
         }
 
-        .blue-card { background: linear-gradient(135deg, #4299e1, #3182ce); }
-        .green-card { background: linear-gradient(135deg, #4fd1c5, #38b2ac); }
+        .blue-card { background: linear-gradient(135deg, #4299e1, #2c68c9); }
+        .green-card { background: linear-gradient(135deg, #4fd1c5, #25b4a6); }
         .red-card { background: linear-gradient(135deg, #f56565, #e53e3e); }
         .dark-card { background: #2d3748; }
 
@@ -159,18 +178,30 @@
         .alert-banner {
             background-color: #f56565;
             color: white;
-            padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 25px;
+            padding: 18px 24px;
+            border-radius: 10px;
+            margin-bottom: 30px;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 18px;
             box-shadow: 0 4px 15px rgba(229, 62, 62, 0.3);
         }
 
-        .alert-banner i { font-size: 2rem; }
-        .alert-text { font-size: 1.2rem; font-weight: 600; }
-        .alert-details { font-weight: 400; opacity: 0.9; }
+        .alert-banner i { 
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .alert-text { 
+            font-size: 1.1rem; 
+            font-weight: 700; 
+        }
+
+        .alert-details { 
+            font-size: 0.9rem;
+            font-weight: 400; 
+            opacity: 0.95;
+        }
 
         /* Chart Section */
         .chart-container {

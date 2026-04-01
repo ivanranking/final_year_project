@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-blue: #1e60ad;
-            --nav-blue: #0d47a1;
+            --primary-blue: #1b68c9;
+            --nav-blue: #1b68c9;
             --bg-tint: #f1f6fb;
             --text-dark: #2c3e50;
             --border-color: #e2e8f0;
@@ -38,29 +38,36 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 8%;
+            padding: 12px 5%;
             width: 100%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: bold;
             display: flex;
             align-items: center;
             gap: 10px;
+            cursor: pointer;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 30px;
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
             font-size: 0.9rem;
-            opacity: 0.9;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
         }
 
         /* --- Registration Container --- */
@@ -74,9 +81,10 @@
         }
 
         h1 {
-            font-size: 2.2rem;
-            margin-bottom: 30px;
+            font-size: 2rem;
+            margin-bottom: 40px;
             color: var(--text-dark);
+            font-weight: 600;
         }
 
         .register-card {
@@ -84,17 +92,17 @@
             width: 100%;
             max-width: 550px;
             border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             border: 1px solid var(--border-color);
             overflow: hidden;
         }
 
         .card-body {
-            padding: 35px 40px;
+            padding: 40px;
         }
 
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 22px;
         }
 
         .form-group:last-child {
@@ -104,31 +112,37 @@
         label {
             display: block;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: #4a5568;
             font-size: 0.95rem;
         }
 
-        input {
+        input, textarea {
             width: 100%;
-            padding: 12px;
+            padding: 12px 14px;
             border: 1px solid #cbd5e0;
             border-radius: 6px;
-            background-color: var(--input-bg);
-            font-size: 1rem;
+            background-color: white;
+            font-size: 0.95rem;
             outline: none;
             transition: all 0.2s ease-in-out;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        input:focus {
+        input:focus, textarea:focus {
             border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(30, 96, 173, 0.1);
+            box-shadow: 0 0 0 3px rgba(27, 104, 201, 0.1);
+        }
+
+        .form-control::placeholder {
+            color: #a0aec0;
+            font-size: 0.9rem;
         }
 
         /* --- Action Footer --- */
         .card-footer {
             background-color: #f8fafc;
-            padding: 25px 40px;
+            padding: 20px 40px;
             border-top: 1px solid var(--border-color);
             text-align: center;
         }
@@ -140,19 +154,24 @@
             color: white;
             border: none;
             border-radius: 6px;
-            font-size: 1.1rem;
-            font-weight: bold;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background 0.3s ease;
         }
 
         .btn-register:hover {
             background-color: #164da1;
         }
 
+        .btn-register:active {
+            transform: scale(0.98);
+        }
+
         .login-link {
             margin-top: 20px;
             font-size: 0.9rem;
+            text-align: center;
         }
 
         .login-link a {
@@ -202,7 +221,7 @@
                 {% csrf_token %}
 
                 {% if messages %}
-                <div style="margin-bottom: 16px;">
+                <div style="margin-bottom: 16px; padding: 0 40px; padding-top: 15px;">
                     {% for message in messages %}
                         <div style="color: {% if message.tags == 'error' %}#e53e3e{% else %}#2f855a{% endif %}; font-weight: 600; margin-bottom: 6px;">{{ message }}</div>
                     {% endfor %}
@@ -211,18 +230,23 @@
 
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="id_username">Username</label>
-                        {{ form.username }}
+                        <label for="id_first_name">Full Name</label>
+                        {{ form.first_name }}
                     </div>
 
                     <div class="form-group">
-                        <label for="id_password1">Password</label>
-                        {{ form.password1 }}
+                        <label for="id_email">Email</label>
+                        {{ form.email }}
                     </div>
 
                     <div class="form-group">
-                        <label for="id_password2">Confirm Password</label>
-                        {{ form.password2 }}
+                        <label for="id_password">Password</label>
+                        {{ form.password }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_confirm_password">Confirm Password</label>
+                        {{ form.confirm_password }}
                     </div>
                 </div>
 

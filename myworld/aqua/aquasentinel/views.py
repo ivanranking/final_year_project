@@ -2,10 +2,10 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 
-from .forms import ProfileForm
-from .models import Device, LeakEvent
+from .forms import ProfileForm, RegistrationForm, UserProfileForm
+from .models import Device, LeakEvent, UserProfile
 
 
 def index(request):
@@ -49,7 +49,7 @@ def register(request):
         return redirect('dashboard')
 
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
@@ -58,14 +58,7 @@ def register(request):
         else:
             messages.error(request, "Please fix the errors below.")
     else:
-        form = UserCreationForm()
-
-    # Style the form fields to match existing design.
-    for field in form:
-        field.field.widget.attrs.update({
-            'class': 'form-control',
-            'placeholder': field.label,
-        })
+        form = RegistrationForm()
 
     return render(request, 'register.html', {'form': form})
 
@@ -121,20 +114,44 @@ def sms_logs(request):
 
 @login_required(login_url='login')
 def settings(request):
+    # Get or create user profile
+    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+    
     if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=request.user)
-        if form.is_valid():
-            form.save()
+        user_form = ProfileForm(request.POST, instance=request.user)
+        profile_form = UserProfileForm(request.POST, request.FILES, instance=user_profile)
+        
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
             messages.success(request, 'Profile updated successfully.')
             return redirect('settings')
         else:
             messages.error(request, 'Please fix the errors below.')
     else:
-        form = ProfileForm(instance=request.user)
+        user_form = ProfileForm(instance=request.user)
+        profile_form = UserProfileForm(instance=user_profile)
 
-    return render(request, 'settings.html', {'form': form})
+    context = {
+        'form': user_form,
+        'profile_form': profile_form,
+        'user_profile': user_profile,
+    }
+    return render(request, 'settings.html', context)
 
 
 @login_required(login_url='login')
 def admin_dashboard(request):
     return render(request, 'admin.html')
+
+
+def privacy_policy(request):
+    return render(request, 'privacy_policy.html')
+
+
+def terms_of_use(request):
+    return render(request, 'terms_of_use.html')
+
+
+def cookie_policy(request):
+    return render(request, 'cookie_policy.html')
