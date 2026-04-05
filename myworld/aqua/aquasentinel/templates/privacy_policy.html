@@ -1,0 +1,319 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaSentinel | Privacy Policy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --brand-blue: #1b68c9;
+            --light-blue: #2c7bc9;
+            --accent-green: #25b4a6;
+            --text-dark: #2d3748;
+            --white: #ffffff;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        nav {
+            background-color: var(--brand-blue);
+            color: white;
+            padding: 12px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .policy-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .policy-header h1 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .policy-header p {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+
+        .policy-content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .policy-section {
+            margin-bottom: 30px;
+        }
+
+        .policy-section h2 {
+            font-size: 1.5rem;
+            color: var(--brand-blue);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .policy-section h3 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin: 20px 0 10px 0;
+        }
+
+        .policy-section p {
+            margin-bottom: 15px;
+            color: #4a5568;
+        }
+
+        .policy-section ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .policy-section li {
+            margin-bottom: 8px;
+            color: #4a5568;
+        }
+
+        .contact-section {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            color: var(--brand-blue);
+            margin-bottom: 15px;
+        }
+
+        .contact-section p {
+            margin-bottom: 10px;
+        }
+
+        .contact-section a {
+            color: var(--brand-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-section a:hover {
+            text-decoration: underline;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: #718096;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+                padding: 0 15px;
+            }
+
+            .policy-content {
+                padding: 20px;
+            }
+
+            .policy-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <i class="fas fa-tint"></i>
+            AquaSentinel
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="policy-header">
+            <h1>Privacy Policy</h1>
+            <p>Last updated: March 17, 2026</p>
+        </div>
+
+        <div class="policy-content">
+            <div class="policy-section">
+                <h2>1. Introduction</h2>
+                <p>Welcome to AquaSentinel ("we," "our," or "us"). We are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our smart leakage detection services.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>2. Information We Collect</h2>
+                <h3>Personal Information</h3>
+                <p>We may collect the following personal information:</p>
+                <ul>
+                    <li>Name and contact information (email address, phone number)</li>
+                    <li>Account credentials (username, password)</li>
+                    <li>Device information and location data</li>
+                    <li>Communication preferences</li>
+                </ul>
+
+                <h3>Usage Data</h3>
+                <p>We automatically collect certain information when you use our services:</p>
+                <ul>
+                    <li>Device sensor data and leakage detection information</li>
+                    <li>Log data and usage statistics</li>
+                    <li>IP address and browser information</li>
+                    <li>Cookies and similar tracking technologies</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>3. How We Use Your Information</h2>
+                <p>We use the collected information for the following purposes:</p>
+                <ul>
+                    <li>To provide and maintain our leakage detection services</li>
+                    <li>To send important notifications about leak detection</li>
+                    <li>To improve and optimize our services</li>
+                    <li>To communicate with you about updates and features</li>
+                    <li>To ensure security and prevent fraud</li>
+                    <li>To comply with legal obligations</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>4. Information Sharing and Disclosure</h2>
+                <p>We do not sell, trade, or otherwise transfer your personal information to third parties, except in the following circumstances:</p>
+                <ul>
+                    <li>With your explicit consent</li>
+                    <li>To comply with legal requirements</li>
+                    <li>To protect our rights and safety</li>
+                    <li>In connection with a business transfer or merger</li>
+                    <li>With service providers who assist our operations (under strict confidentiality agreements)</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>5. Data Security</h2>
+                <p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. These measures include:</p>
+                <ul>
+                    <li>Encryption of data in transit and at rest</li>
+                    <li>Regular security assessments</li>
+                    <li>Access controls and authentication</li>
+                    <li>Secure data storage practices</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>6. Your Rights</h2>
+                <p>You have the following rights regarding your personal information:</p>
+                <ul>
+                    <li><strong>Access:</strong> Request a copy of your personal data</li>
+                    <li><strong>Correction:</strong> Request correction of inaccurate data</li>
+                    <li><strong>Deletion:</strong> Request deletion of your personal data</li>
+                    <li><strong>Portability:</strong> Request transfer of your data</li>
+                    <li><strong>Objection:</strong> Object to processing in certain circumstances</li>
+                    <li><strong>Restriction:</strong> Request limitation of processing</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>7. Cookies and Tracking Technologies</h2>
+                <p>We use cookies and similar technologies to enhance your experience. For detailed information about our cookie practices, please see our <a href="{% url 'cookie_policy' %}">Cookie Policy</a>.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>8. Data Retention</h2>
+                <p>We retain your personal information only as long as necessary for the purposes outlined in this Privacy Policy, unless a longer retention period is required by law.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>9. International Data Transfers</h2>
+                <p>Your information may be transferred to and processed in countries other than your own. We ensure appropriate safeguards are in place to protect your data during such transfers.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>10. Children's Privacy</h2>
+                <p>Our services are not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>11. Changes to This Privacy Policy</h2>
+                <p>We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new Privacy Policy on this page and updating the "Last updated" date.</p>
+            </div>
+
+            <div class="contact-section">
+                <h3>Contact Us</h3>
+                <p>If you have any questions about this Privacy Policy or our privacy practices, please contact us:</p>
+                <p><strong>Email:</strong> <a href="mailto:privacy@aquasentinel.com">privacy@aquasentinel.com</a></p>
+                <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                <p><strong>Address:</strong> 123 Water Street, Aqua City, AC 12345</p>
+            </div>
+        </div>
+
+        <div class="last-updated">
+            This Privacy Policy was last updated on March 17, 2026.
+        </div>
+    </div>
+</body>
+</html>

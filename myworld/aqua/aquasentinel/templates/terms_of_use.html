@@ -1,0 +1,310 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaSentinel | Terms of Use</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --brand-blue: #1b68c9;
+            --light-blue: #2c7bc9;
+            --accent-green: #25b4a6;
+            --text-dark: #2d3748;
+            --white: #ffffff;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        nav {
+            background-color: var(--brand-blue);
+            color: white;
+            padding: 12px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .policy-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .policy-header h1 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .policy-header p {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+
+        .policy-content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .policy-section {
+            margin-bottom: 30px;
+        }
+
+        .policy-section h2 {
+            font-size: 1.5rem;
+            color: var(--brand-blue);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .policy-section h3 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin: 20px 0 10px 0;
+        }
+
+        .policy-section p {
+            margin-bottom: 15px;
+            color: #4a5568;
+        }
+
+        .policy-section ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .policy-section li {
+            margin-bottom: 8px;
+            color: #4a5568;
+        }
+
+        .contact-section {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            color: var(--brand-blue);
+            margin-bottom: 15px;
+        }
+
+        .contact-section p {
+            margin-bottom: 10px;
+        }
+
+        .contact-section a {
+            color: var(--brand-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-section a:hover {
+            text-decoration: underline;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: #718096;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+                padding: 0 15px;
+            }
+
+            .policy-content {
+                padding: 20px;
+            }
+
+            .policy-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <i class="fas fa-tint"></i>
+            AquaSentinel
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="policy-header">
+            <h1>Terms of Use</h1>
+            <p>Last updated: March 17, 2026</p>
+        </div>
+
+        <div class="policy-content">
+            <div class="policy-section">
+                <h2>1. Acceptance of Terms</h2>
+                <p>By accessing and using AquaSentinel ("the Service"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>2. Description of Service</h2>
+                <p>AquaSentinel provides smart water leakage detection services through IoT devices and a web-based monitoring platform. Our services include real-time monitoring, leak detection alerts, data analytics, and reporting features.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>3. User Accounts</h2>
+                <h3>Account Creation</h3>
+                <p>To use certain features of our Service, you must create an account. You agree to:</p>
+                <ul>
+                    <li>Provide accurate and complete information</li>
+                    <li>Maintain the security of your password</li>
+                    <li>Accept responsibility for all activities under your account</li>
+                    <li>Notify us immediately of any unauthorized use</li>
+                </ul>
+
+                <h3>Account Termination</h3>
+                <p>We reserve the right to terminate or suspend your account at our discretion, with or without notice, for any reason including violation of these Terms.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>4. Acceptable Use Policy</h2>
+                <p>You agree not to use the Service to:</p>
+                <ul>
+                    <li>Violate any applicable laws or regulations</li>
+                    <li>Infringe on intellectual property rights</li>
+                    <li>Transmit harmful or malicious code</li>
+                    <li>Attempt to gain unauthorized access to our systems</li>
+                    <li>Interfere with the proper functioning of the Service</li>
+                    <li>Use the Service for any fraudulent or illegal purpose</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>5. Device Installation and Use</h2>
+                <h3>Installation Requirements</h3>
+                <p>Users are responsible for proper installation of AquaSentinel devices according to our guidelines. Improper installation may result in inaccurate readings or device malfunction.</p>
+
+                <h3>Device Maintenance</h3>
+                <p>Users must maintain devices in good working condition and report any malfunctions promptly. We are not responsible for damages caused by improper maintenance.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>6. Data and Privacy</h2>
+                <p>Your use of the Service is also governed by our Privacy Policy, which is incorporated into these Terms by reference. Please review our <a href="{% url 'privacy_policy' %}">Privacy Policy</a> to understand our data collection and usage practices.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>7. Intellectual Property</h2>
+                <p>The Service and its original content, features, and functionality are owned by AquaSentinel and are protected by copyright, trademark, and other intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>8. Service Availability</h2>
+                <h3>Service Levels</h3>
+                <p>While we strive for high availability, we do not guarantee uninterrupted access to the Service. The Service may be temporarily unavailable due to maintenance, updates, or unforeseen circumstances.</p>
+
+                <h3>Emergency Services</h3>
+                <p>AquaSentinel is not a substitute for professional plumbing services or emergency response systems. In case of water damage or emergency, contact appropriate emergency services immediately.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>9. Limitation of Liability</h2>
+                <p>To the maximum extent permitted by law, AquaSentinel shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of the Service, including but not limited to property damage, data loss, or business interruption.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>10. Indemnification</h2>
+                <p>You agree to indemnify and hold AquaSentinel harmless from any claims, damages, losses, or expenses arising from your violation of these Terms or your use of the Service.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>11. Termination</h2>
+                <p>Either party may terminate this agreement at any time. Upon termination, your right to use the Service will cease immediately, and we may delete your account and data in accordance with our data retention policies.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>12. Governing Law</h2>
+                <p>These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which AquaSentinel operates, without regard to conflict of law principles.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>13. Changes to Terms</h2>
+                <p>We reserve the right to modify these Terms at any time. We will notify users of material changes via email or through the Service. Continued use of the Service after changes constitutes acceptance of the new Terms.</p>
+            </div>
+
+            <div class="contact-section">
+                <h3>Contact Us</h3>
+                <p>If you have any questions about these Terms of Use, please contact us:</p>
+                <p><strong>Email:</strong> <a href="mailto:legal@aquasentinel.com">legal@aquasentinel.com</a></p>
+                <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                <p><strong>Address:</strong> 123 Water Street, Aqua City, AC 12345</p>
+            </div>
+        </div>
+
+        <div class="last-updated">
+            These Terms of Use were last updated on March 17, 2026.
+        </div>
+    </div>
+</body>
+</html>
