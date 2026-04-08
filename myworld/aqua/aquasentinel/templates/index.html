@@ -20,33 +20,34 @@
 
         body { background-color: #f9fbfd; color: var(--text-dark); }
 
-        /* --- Hero Section with Background Waves --- */
+        /* --- Hero Section with Clean Gradient --- */
+        body {
+            background: radial-gradient(circle at top left, rgba(37, 180, 166, 0.12), transparent 32%),
+                        radial-gradient(circle at bottom right, rgba(27, 104, 201, 0.08), transparent 28%),
+                        #f4f8fb;
+            color: var(--text-dark);
+        }
+
         .hero {
-            background: linear-gradient(180deg, var(--brand-blue) 0%, var(--light-blue) 100%);
+            background: linear-gradient(135deg, #0e3d7d 0%, #1b7bd0 55%, #24b5a3 100%);
             color: white;
-            padding: 60px 8% 120px;
+            padding: 70px 8% 90px;
             position: relative;
             overflow: hidden;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
         }
 
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            background: url('https://images.unsplash.com/photo-1560457079-29a13059c0bb?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;
-            opacity: 0.12;
-            z-index: 0;
-        }
-
-        /* Abstract Background Waves */
         .hero::before, .hero::after {
             content: '';
             position: absolute;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             z-index: 0;
+            filter: blur(20px);
         }
-        .hero::before { width: 500px; height: 500px; top: -100px; right: -100px; }
-        .hero::after { width: 300px; height: 300px; bottom: 50px; left: -50px; }
+        .hero::before { width: 420px; height: 420px; top: -120px; right: -80px; }
+        .hero::after { width: 260px; height: 260px; bottom: -80px; left: -40px; }
 
         nav { 
             display: flex; 
@@ -55,53 +56,61 @@
             position: relative; 
             z-index: 1; 
             padding: 0 0 20px 0;
+            flex-wrap: wrap;
+            gap: 20px;
         }
         .logo { 
-            font-size: 1.5rem; 
-            font-weight: 700; 
+            font-size: 1.6rem; 
+            font-weight: 800; 
             display: flex; 
             align-items: center; 
-            gap: 10px; 
+            gap: 12px; 
             cursor: pointer;
             color: white;
             text-decoration: none;
+            letter-spacing: 0.04em;
         }
         .nav-links { 
             display: flex; 
             list-style: none; 
-            gap: 30px; 
+            gap: 28px; 
+            flex-wrap: wrap;
         }
         .nav-links a { 
-            color: white; 
+            color: rgba(255,255,255,0.92); 
             text-decoration: none; 
             font-weight: 500; 
             opacity: 0.95;
             font-size: 0.95rem;
+            transition: opacity 0.25s ease, transform 0.25s ease;
         }
         .nav-links a:hover {
             opacity: 1;
+            transform: translateY(-1px);
         }
 
-        .hero-content { text-align: left; max-width: 540px; position: relative; z-index: 1; }
-        .hero-content h1 { font-size: 3.5rem; margin-bottom: 15px; line-height: 1.1; }
-        .hero-content p { font-size: 1.1rem; margin-bottom: 35px; font-weight: 300; line-height: 1.6; }
+        .hero-content { text-align: left; max-width: 560px; position: relative; z-index: 1; }
+        .hero-content h1 { font-size: clamp(3rem, 5vw, 4.5rem); margin-bottom: 18px; line-height: 1.02; letter-spacing: -0.03em; }
+        .hero-content p { font-size: 1.05rem; margin-bottom: 38px; font-weight: 400; line-height: 1.75; max-width: 620px; }
 
-        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-top: 50px; position: relative; z-index: 1; }
-        .hero-visual { display: flex; justify-content: center; }
-        .hero-visual img { border-radius: 22px; box-shadow: 0 30px 50px rgba(0,0,0,0.15); max-width: 100%; height: auto; }
+        .hero-grid { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: center; margin-top: 30px; position: relative; z-index: 1; }
 
-        .trusted { margin-top: 30px; color: rgba(255,255,255,0.85); font-size: 0.9rem; display: flex; flex-direction: column; gap: 10px; }
-        .trusted span { opacity: 0.9; }
-        .trusted .logos { display: flex; gap: 15px; align-items: center; }
-        .trusted .logos img { width: 110px; height: auto; opacity: 0.85; filter: brightness(1.1); }
-
-        @media (max-width: 960px) {
-            .hero-grid { grid-template-columns: 1fr; gap: 35px; }
-            .hero-content { text-align: center; }
-            .trusted { align-items: center; }
+        .hero-accent {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 25px;
+            background: rgba(255,255,255,0.14);
+            border: 1px solid rgba(255,255,255,0.22);
+            border-radius: 999px;
+            padding: 14px 20px;
+            max-width: fit-content;
+            backdrop-filter: blur(10px);
+            color: white;
+            font-weight: 600;
         }
+        .hero-accent i { font-size: 1.2rem; }
 
-        /* Buttons matching the image style */
         .btn-container { 
             display: flex; 
             justify-content: flex-start; 
@@ -109,37 +118,115 @@
             flex-wrap: wrap;
         }
         .btn { 
-            padding: 13px 35px; 
-            border-radius: 8px; 
+            padding: 14px 36px; 
+            border-radius: 999px; 
             text-decoration: none; 
-            font-weight: 600; 
-            border: 2px solid white; 
-            transition: all 0.3s ease;
+            font-weight: 700; 
+            border: 2px solid transparent; 
+            transition: all 0.25s ease;
             font-size: 0.95rem;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
         .btn-white { 
-            background: white; 
+            background: rgba(255,255,255,0.95); 
             color: var(--brand-blue);
-            border-color: white;
+            border-color: transparent;
         }
         .btn-white:hover { 
-            background: rgba(255, 255, 255, 0.9);
+            background: white;
             transform: translateY(-2px);
         }
         .btn-green { 
-            background: var(--accent-green); 
-            border-color: var(--accent-green); 
+            background: #23b59e; 
             color: white; 
+            border-color: transparent; 
         }
         .btn-green:hover { 
-            background: #229186;
-            border-color: #229186;
+            background: #1d8e7c;
             transform: translateY(-2px);
         }
         .btn:active {
-            transform: translateY(0px);
+            transform: translateY(0);
         }
+
+        @media (min-width: 900px) {
+            .hero-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 960px) {
+            .hero-content { text-align: center; }
+            .nav-links { justify-content: center; }
+            .hero-accent { justify-content: center; }
+        }
+
+        /* --- Feature Cards --- */
+        .features-container {
+            max-width: 1200px;
+            margin: -80px auto 0;
+            background: rgba(255,255,255,0.88);
+            padding: 35px;
+            border-radius: 28px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            box-shadow: 0 35px 80px rgba(10, 38, 71, 0.08);
+            position: relative;
+            z-index: 2;
+            border: 1px solid rgba(32, 96, 186, 0.08);
+        }
+        .feature-box { 
+            text-align: center; 
+            padding: 24px 18px;
+            border-radius: 24px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.97), rgba(249,250,252,0.97));
+            box-shadow: 0 10px 30px rgba(24, 77, 148, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(24, 77, 148, 0.12);
+        }
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(27, 104, 201, 0.1);
+            color: var(--brand-blue);
+            font-size: 1.8rem;
+        }
+        .feature-box h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+        .feature-box p { 
+            font-size: 0.95rem; 
+            color: #516178; 
+            line-height: 1.7;
+        }
+
+        /* --- How It Works --- */
+        .how-it-works { padding: 70px 20px 50px; text-align: center; }
+        .how-it-works h2 {
+            font-size: 2.4rem;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+        .how-it-works .steps { display: flex; justify-content: center; gap: 28px; margin-top: 40px; flex-wrap: wrap; }
+        .step { width: 220px; padding: 24px 18px; background: white; border-radius: 24px; box-shadow: 0 14px 40px rgba(38, 93, 163, 0.08); }
+        .step-circle { 
+            width: 96px; height: 96px; background: linear-gradient(135deg, rgba(37, 180, 166, 0.18), rgba(27, 104, 201, 0.14));
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 18px; border: 1px solid rgba(37, 180, 166, 0.18);
+        }
+        .step-circle i { font-size: 2.1rem; color: var(--brand-blue); }
+        .step p { font-weight: 700; color: #2e3a50; line-height: 1.6; }
 
         /* --- Feature Icons Section --- */
         .features-container {

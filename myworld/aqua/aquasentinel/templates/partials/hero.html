@@ -1,3 +1,5 @@
+{% load static %}
+
 <section class="hero" id="hero">
     <nav>
         <a href="{% url 'index' %}" class="logo">
@@ -22,22 +24,17 @@
             <h1>AquaSentinel</h1>
             <p>Smart, affordable leak detection get real time alerts, monitor devices, and stop water loss before it becomes expensive.</p>
 
+        <div class="hero-accent">
+            <i class="fas fa-water"></i>
+            <span>Built for fast, reliable water security.</span>
+        </div>
+
             <div class="btn-container">
                 <a href="{% url 'login' %}" class="btn btn-white">Login</a>
                 <a href="{% url 'register' %}" class="btn btn-white">Register</a>
                 <a href="{% url 'dashboard' %}" class="btn btn-green">View dashboard</a>
             </div>
 
-            <div class="trusted">
-                <span>Trusted by:</span>
-                <div class="logos">
-                    <img src="{% static 'aquasentinel/team/makerere-university.png' %}" alt="Makerere University" />
-                </div>
-            </div>
-        </div>
-
-        <div class="hero-visual">
-            <img src="{% static 'aquasentinel/team/dashboard-screenshot.png' %}" alt="AquaSentinel dashboard screenshot" />
         </div>
     </div>
 </section>
