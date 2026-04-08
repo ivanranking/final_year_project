@@ -31,9 +31,10 @@
         .hero {
             background: linear-gradient(135deg, #0e3d7d 0%, #1b7bd0 40%, #1e8fb8 100%);
             color: white;
-            padding: 70px 8% 90px;
+            padding: 90px 8% 90px;
             position: relative;
             overflow: hidden;
+            min-height: 82vh;
             border-bottom-left-radius: 40px;
             border-bottom-right-radius: 40px;
         }
@@ -336,6 +337,14 @@
         .member-avatar i {
             font-size: 3rem;
             color: white;
+        }
+
+        .member-avatar img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
         }
 
         .team-member h3 {

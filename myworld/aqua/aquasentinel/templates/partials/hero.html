@@ -8,8 +8,8 @@
 
         <ul class="nav-links">
             <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'dashboard' %}">Services</a></li>
-            <li><a href="{% url 'sms' %}">Notifications</a></li>
+            <li><a href="{% url 'dashboard' %}">Solutions</a></li>
+            <li><a href="{% url 'sms' %}">Alerts</a></li>
             {% if request.user.is_authenticated %}
                 <li><a href="{% url 'settings' %}">Settings</a></li>
                 <li><a href="{% url 'logout' %}">Logout</a></li>
@@ -22,17 +22,17 @@
     <div class="hero-grid">
         <div class="hero-content">
             <h1>AquaSentinel</h1>
-            <p>Smart, affordable leak detection get real time alerts, monitor devices, and stop water loss before it becomes expensive.</p>
+            <p>Protect your property with intelligent water leak detection, instant alerts, and proactive monitoring that prevents costly damage.</p>
 
-        <div class="hero-accent">
-            <i class="fas fa-water"></i>
-            <span>Built for fast, reliable water security.</span>
-        </div>
+            <div class="hero-accent">
+                <i class="fas fa-water"></i>
+                <span>Enterprise-grade water security for homes and businesses.</span>
+            </div>
 
             <div class="btn-container">
                 <a href="{% url 'login' %}" class="btn btn-white">Login</a>
-                <a href="{% url 'register' %}" class="btn btn-white">Register</a>
-                <a href="{% url 'dashboard' %}" class="btn btn-green">View dashboard</a>
+                <a href="{% url 'register' %}" class="btn btn-white">Get started</a>
+                <a href="{% url 'dashboard' %}" class="btn btn-green">View Dashboard</a>
             </div>
 
         </div>
