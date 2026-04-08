@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaSentinel | SMS Settings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #1b68c9;
+            --nav-blue: #1b68c9;
+            --bg-light: #f0f4f8;
+            --text-dark: #2c3e50;
+            --success-green: #25b4a6;
+            --danger-red: #e53e3e;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            background-color: var(--nav-blue);
+            color: white;
+            padding: 12px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-icons a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+
+        .nav-icons a:hover {
+            opacity: 1;
+        }
+
+        .nav-icons i {
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0.9;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 5px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .user-profile img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .profile-dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            right: 0;
+            top: 46px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.16);
+            overflow: hidden;
+            display: none;
+            min-width: 160px;
+            z-index: 20;
+        }
+
+        .dropdown-menu.open {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 14px;
+            text-decoration: none;
+            color: #2d3748;
+            font-weight: 600;
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(0,0,0,0.06);
+        }
+
+        /* --- MAIN CONTAINER --- */
+        .container {
+            padding: 50px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .settings-card {
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        /* --- CARD HEADER --- */
+        .card-header {
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .card-header h2 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .btn-add-device {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: background 0.2s;
+        }
+
+        .btn-add-device:hover {
+            background-color: #164da1;
+        }
+
+        .btn-add-device i {
+            font-size: 0.9rem;
+            border-left: 1px solid rgba(255,255,255,0.3);
+            padding-left: 12px;
+        }
+
+        /* --- TABLE STYLING --- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: #f8fafc;
+        }
+
+        th {
+            padding: 15px 25px;
+            text-align: left;
+            font-weight: 700;
+            color: #4a5568;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            padding: 18px 25px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            color: #2d3748;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .status-sent {
+            color: var(--success-green);
+            font-weight: 700;
+        }
+
+        .timestamp-alt {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        /* Action Icons */
+        .action-icon {
+            color: white;
+            background-color: var(--nav-blue);
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .card-header { flex-direction: column; gap: 15px; align-items: flex-start; }
+            td, th { padding: 12px 15px; }
+            .btn-add-device { width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <i class="fas fa-eye"></i> AquaSentinel
+        </div>
+        <div class="nav-icons">
+            <a href="{% url 'reports' %}" title="Reports"><i class="fas fa-chart-line"></i></a>
+            <a href="{% url 'analytics' %}" title="Analytics"><i class="fas fa-chart-bar"></i></a>
+            <a href="{% url 'devices' %}" title="Devices"><i class="fas fa-microchip"></i></a>
+
+            <div class="profile-dropdown">
+                <button type="button" class="user-profile" id="profileToggle">
+                    <img src="https://via.placeholder.com/30" alt="User" />
+                    <span>{{ request.user.username }}</span>
+                    <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+                </button>
+                <div class="dropdown-menu" id="profileMenu">
+                    <a href="{% url 'settings' %}">Settings</a>
+                    <a href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="settings-card">
+            
+            <div class="card-header">
+                <h2>SMS Settings</h2>
+                <button class="btn-add-device">
+                    Add Devices <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Phone Number</th>
+                        <th>Message</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>24/02/2026</td>
+                        <td>+1234567890</td>
+                        <td>Leak detected in Kitchen pipeline at 14:32</td>
+                        <td class="status-sent">Sent</td>
+                        <td><div class="action-icon"><i class="fas fa-times"></i></div></td>
+                    </tr>
+                    <tr>
+                        <td>24/02/2026</td>
+                        <td>+1234567890</td>
+                        <td>Leak detected in Kitchen pipeline at 10:32</td>
+                        <td class="status-sent">Sent</td>
+                        <td><div class="action-icon"><i class="fas fa-times"></i></div></td>
+                    </tr>
+                    <tr>
+                        <td>24/02/2026</td>
+                        <td>+9134557566</td>
+                        <td>Leak detected in Kitchen</td>
+                        <td class="status-sent">Sent</td>
+                        <td><div class="action-icon"><i class="fas fa-times"></i></div></td>
+                    </tr>
+                    <tr>
+                        <td>24/02/2026</td>
+                        <td>+1234567890</td>
+                        <td>Offline</td>
+                        <td class="timestamp-alt">12:56:10</td>
+                        <td><div class="action-icon"><i class="fas fa-times"></i></div></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <script>
+        const profileToggle = document.getElementById('profileToggle');
+        const profileMenu = document.getElementById('profileMenu');
+
+        profileToggle?.addEventListener('click', (e) => {
+            e.stopPropagation();
+            profileMenu.classList.toggle('open');
+        });
+
+        document.addEventListener('click', () => {
+            profileMenu.classList.remove('open');
+        });
+    </script>
+</body>
+</html>

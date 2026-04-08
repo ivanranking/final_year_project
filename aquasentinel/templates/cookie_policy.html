@@ -1,0 +1,401 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaSentinel | Cookie Policy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --brand-blue: #1b68c9;
+            --light-blue: #2c7bc9;
+            --accent-green: #25b4a6;
+            --text-dark: #2d3748;
+            --white: #ffffff;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        nav {
+            background-color: var(--brand-blue);
+            color: white;
+            padding: 12px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .policy-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .policy-header h1 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .policy-header p {
+            color: #718096;
+            font-size: 1.1rem;
+        }
+
+        .policy-content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .policy-section {
+            margin-bottom: 30px;
+        }
+
+        .policy-section h2 {
+            font-size: 1.5rem;
+            color: var(--brand-blue);
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .policy-section h3 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin: 20px 0 10px 0;
+        }
+
+        .policy-section p {
+            margin-bottom: 15px;
+            color: #4a5568;
+        }
+
+        .policy-section ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .policy-section li {
+            margin-bottom: 8px;
+            color: #4a5568;
+        }
+
+        .cookie-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: var(--bg-light);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .cookie-table th,
+        .cookie-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cookie-table th {
+            background: var(--brand-blue);
+            color: white;
+            font-weight: 600;
+        }
+
+        .cookie-table tr:nth-child(even) {
+            background: rgba(27, 104, 201, 0.05);
+        }
+
+        .cookie-table tr:hover {
+            background: rgba(27, 104, 201, 0.08);
+        }
+
+        .contact-section {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            color: var(--brand-blue);
+            margin-bottom: 15px;
+        }
+
+        .contact-section p {
+            margin-bottom: 10px;
+        }
+
+        .contact-section a {
+            color: var(--brand-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-section a:hover {
+            text-decoration: underline;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: #718096;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .cookie-settings {
+            background: linear-gradient(135deg, var(--brand-blue), var(--light-blue));
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .cookie-settings h3 {
+            margin-bottom: 10px;
+        }
+
+        .cookie-settings p {
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .cookie-settings button {
+            background: white;
+            color: var(--brand-blue);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .cookie-settings button:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+                padding: 0 15px;
+            }
+
+            .policy-content {
+                padding: 20px;
+            }
+
+            .policy-header h1 {
+                font-size: 2rem;
+            }
+
+            .cookie-table {
+                font-size: 0.9rem;
+            }
+
+            .cookie-table th,
+            .cookie-table td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <i class="fas fa-tint"></i>
+            AquaSentinel
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'register' %}">Register</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="policy-header">
+            <h1>Cookie Policy</h1>
+            <p>Last updated: March 17, 2026</p>
+        </div>
+
+        <div class="policy-content">
+            <div class="policy-section">
+                <h2>1. What Are Cookies</h2>
+                <p>Cookies are small text files that are stored on your device when you visit our website. They help us provide you with a better browsing experience by remembering your preferences and understanding how you use our site.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>2. How We Use Cookies</h2>
+                <p>We use cookies for the following purposes:</p>
+                <ul>
+                    <li><strong>Essential Cookies:</strong> Required for the website to function properly</li>
+                    <li><strong>Analytics Cookies:</strong> Help us understand how visitors use our site</li>
+                    <li><strong>Functional Cookies:</strong> Remember your preferences and settings</li>
+                    <li><strong>Marketing Cookies:</strong> Used to deliver relevant advertisements</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>3. Types of Cookies We Use</h2>
+                <table class="cookie-table">
+                    <thead>
+                        <tr>
+                            <th>Cookie Type</th>
+                            <th>Purpose</th>
+                            <th>Duration</th>
+                            <th>Provider</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Session Cookies</td>
+                            <td>Maintain your login session</td>
+                            <td>Session</td>
+                            <td>AquaSentinel</td>
+                        </tr>
+                        <tr>
+                            <td>Preference Cookies</td>
+                            <td>Remember your settings</td>
+                            <td>1 year</td>
+                            <td>AquaSentinel</td>
+                        </tr>
+                        <tr>
+                            <td>Analytics Cookies</td>
+                            <td>Track website usage</td>
+                            <td>2 years</td>
+                            <td>Google Analytics</td>
+                        </tr>
+                        <tr>
+                            <td>Security Cookies</td>
+                            <td>Prevent fraud and abuse</td>
+                            <td>Session</td>
+                            <td>AquaSentinel</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="policy-section">
+                <h2>4. Third-Party Cookies</h2>
+                <p>We may use third-party services that set their own cookies:</p>
+                <ul>
+                    <li><strong>Google Analytics:</strong> For website analytics and performance monitoring</li>
+                    <li><strong>Social Media Plugins:</strong> For social sharing functionality</li>
+                    <li><strong>Payment Processors:</strong> For secure payment processing (when applicable)</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>5. Managing Cookies</h2>
+                <p>You can control and manage cookies in various ways:</p>
+
+                <h3>Browser Settings</h3>
+                <p>Most web browsers allow you to control cookies through their settings. You can usually find these settings in the 'Options' or 'Preferences' menu of your browser.</p>
+
+                <h3>Opt-out Options</h3>
+                <p>You can opt out of interest-based advertising by visiting:</p>
+                <ul>
+                    <li><a href="https://www.google.com/settings/ads" target="_blank">Google Ad Settings</a></li>
+                    <li><a href="https://www.facebook.com/ads/preferences" target="_blank">Facebook Ad Preferences</a></li>
+                </ul>
+            </div>
+
+            <div class="cookie-settings">
+                <h3>Cookie Preferences</h3>
+                <p>You can manage your cookie preferences at any time.</p>
+                <button onclick="openCookieSettings()">Manage Cookie Settings</button>
+            </div>
+
+            <div class="policy-section">
+                <h2>6. Impact of Disabling Cookies</h2>
+                <p>Please note that disabling certain cookies may affect the functionality of our website. Some features may not work properly if you disable essential cookies.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>7. Updates to This Policy</h2>
+                <p>We may update this Cookie Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify you of any material changes.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>8. Contact Us</h2>
+                <p>If you have any questions about our use of cookies or this Cookie Policy, please contact us at <href="mailto:ivanranking055@gmail.com">ivanranking055@gmail.com</a>.</p>
+            </div>
+
+            <div class="contact-section">
+                <h3>Need Help?</h3>
+                <p>For questions about cookies or privacy, contact our team:</p>
+                <p><strong>Email:</strong> <a href="mailto:ivanranking055@gmail.com">ivanranking055@gmail.com</a></p>
+                <p><strong>Phone:</strong> +256 780809632</p>
+                <p><strong>Address:</strong> makerere University</p>
+            </div>
+        </div>
+
+        <div class="last-updated">
+            This Cookie Policy was last updated on March 17, 2026.
+        </div>
+    </div>
+
+    <script>
+        function openCookieSettings() {
+            // Placeholder for cookie management functionality
+            alert('Cookie management settings will be available soon. For now, you can manage cookies through your browser settings.');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaSentinel | Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #1b68c9;
+            --nav-blue: #1b68c9;
+            --bg-tint: #f1f6fb;
+            --text-dark: #2c3e50;
+            --border-color: #e2e8f0;
+            --input-bg: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-tint);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Navbar (Consistent across all pages) --- */
+        nav {
+            background-color: var(--nav-blue);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 5%;
+            width: 100%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+        }
+
+        /* --- Registration Container --- */
+        .register-wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .register-card {
+            background: white;
+            width: 100%;
+            max-width: 550px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .card-body {
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            background-color: white;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.2s ease-in-out;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(27, 104, 201, 0.1);
+        }
+
+        .form-control::placeholder {
+            color: #a0aec0;
+            font-size: 0.9rem;
+        }
+
+        /* --- Action Footer --- */
+        .card-footer {
+            background-color: #f8fafc;
+            padding: 20px 40px;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .btn-register {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .btn-register:hover {
+            background-color: #164da1;
+        }
+
+        .btn-register:active {
+            transform: scale(0.98);
+        }
+
+        .login-link {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        .login-link a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .card-body, .card-footer {
+                padding: 25px 20px;
+            }
+            nav .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <i class="fas fa-eye"></i> AquaSentinel
+        </div>
+        <ul class="nav-links">
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'devices' %}">Devices</a></li>
+            <li><a href="{% url 'sms' %}">Notifications <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i></a></li>
+            {% if request.user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <div class="register-wrapper">
+        <h1>Register</h1>
+
+        <div class="register-card">
+            <form method="post" autocomplete="off">
+                {% csrf_token %}
+
+                {% if messages %}
+                <div style="margin-bottom: 16px; padding: 0 40px; padding-top: 15px;">
+                    {% for message in messages %}
+                        <div style="color: {% if message.tags == 'error' %}#e53e3e{% else %}#2f855a{% endif %}; font-weight: 600; margin-bottom: 6px;">{{ message }}</div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="id_first_name">Full Name</label>
+                        {{ form.first_name }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_email">Email</label>
+                        {{ form.email }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_password">Password</label>
+                        {{ form.password }}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_confirm_password">Confirm Password</label>
+                        {{ form.confirm_password }}
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn-register">Register</button>
+                </div>
+            </form>
+        </div>
+
+        <p class="login-link">Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+    </div>
+
+</body>
+</html>

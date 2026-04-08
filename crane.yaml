@@ -1,0 +1,28 @@
+# Crane Cloud deployment config for AquaSentinel
+# Adjust domains, environment variables, and service scaling as needed.
+
+name: aqua-sentinel
+region: us-east-1
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    env:
+      DJANGO_SECRET_KEY: "your-strong-secret-here"
+      DJANGO_DEBUG: "False"
+      DJANGO_ALLOWED_HOSTS: "aqua.example.com"
+      DATABASE_URL: "sqlite:///data/db.sqlite3"
+    volumes:
+      - type: persistent
+        source: media
+        target: /app/media
+    command: gunicorn aqua.wsgi:application --bind 0.0.0.0:8000 --workers 3
+
+routes:
+  - type: http
+    service: web
+    port: 8000
